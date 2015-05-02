@@ -52,7 +52,7 @@ jQuery(document).ready(function($) {
 	function resizeTextAd(that, href, alt, src) {
 		var textlines = alt.split("\n");
 		if ($(that).width() >= 550) {
-			if (src.length > 1) {
+			if (textlines.length > 1) {
 				$(that).find('.adrotator-text').html('<div class="adtop-title"><h2><a href="'+href+'">'+textlines[0].replace(/\\/g, '')+'</h2></div><div class="ad-text with-thumb"><a href="'+href+'"><img class="horzad-thumb" src="'+src+'" /></a><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+href+'"><div class="ad-textbutton">></div></a>');
 			} else {
 				$(that).find('.adrotator-text').html('<div class="ad-text"><h2><a href="'+href+'">'+textlines[0].replace(/\\/g, '')+'</a></h2><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+href+'"><div class="ad-textbutton">></div></a>');
@@ -64,10 +64,10 @@ jQuery(document).ready(function($) {
 			$(that).find('.ad-textbutton').css('margin-left', buttonXMargin+'px');
 			$(that).find('.ad-textbutton').css('margin-top', buttonYMargin+'px');
 		} else {
-			if (src.length > 2) {
+			if (src.length > 0) {
 				$(that).find('.adrotator-text').html('<div class="ad-text"><h3><a href="'+href+'">'+textlines[0].replace(/\\/g, '')+'</a></h3><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+href+'"><div class="ad-textbutton ad-img-button" style="background:url('+src+');">></div></a>');
 			} else {
-				$(that).find('.adrotator-text').html('<div class="ad-text"><h3><a href="'+href+'">'+textlines[0].replace(/\\/g, '')+'</a></h3><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+href+'"><div class="ad-textbutton">></div></a>');
+				$(that).find('.adrotator-text').html('<div class="ad-text"><h3><a href="'+href+'">'+textlines[0].replace(/\\/g, '')+'</a></h3><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+href+'"><div class="ad-textbutton ad-img-button" style="background:url('+src+');">></div></a>');
 			}
 			$(that).find('.ad-text').css('text-align', 'center');
 			$(that).find('.ad-textbutton').width($(that).width() * 0.6 );
