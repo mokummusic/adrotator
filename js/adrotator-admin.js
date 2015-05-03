@@ -114,27 +114,19 @@ jQuery(document).ready(function($) {
 		var img = new Image();
 		img.src = imgSrc;
 		img.onload = function() {
-			$('.ad_type_width').text(this.width);
-			$('.ad_type_height').text(this.height);
-			$('.ad_type_width').val(this.width);
-			$('.ad_type_height').val(this.height);
-			$('#ad_img_height').text(this.height);
-			$('#ad_img_width').text(this.width);
 			$("#ad_img_width_input").val(this.width);
+			$("#ad_img_height_input").val(this.height);
 			$("#ad-image-preview").html('<img src="'+img.src+'" />');
-			if ($('#ad_img_width').text() !== '') $('#image-info').css('display', 'block');
-
 		}
 	}
 
 	function updateIframePreview(code) {
 
-		var iframeHtml = ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"><html xmlns="http://www.w3.org/1999/xhtml"><body id="adbody-1" style="margin:-18px 0 0 0;"><div id="widthcontainer" style="display:inline-block;">' + code + '</div><script> browserWindowHeight = document.body.offsetHeight-22; browserWindowWidth = parseInt(getComputedStyle(document.getElementById("widthcontainer")).width); window.onload = function() { parent.adframeLoaded( browserWindowHeight, browserWindowWidth ); } <\/script></body></html>').replace(/"/g, "'");
+		var iframeHtml = ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"><html xmlns="http://www.w3.org/1999/xhtml"><body id="adbody-1" style="margin:-18px 0 0 0;"><div id="widthcontainer" style="display:inline-block;">' + code + '</div><script> browserWindowHeight = document.body.offsetHeight-4; browserWindowWidth = parseInt(getComputedStyle(document.getElementById("widthcontainer")).width)-3; window.onload = function() { parent.adframeLoaded( browserWindowHeight, browserWindowWidth ); } <\/script></body></html>').replace(/"/g, "'");
 		iframeHtml = '<iframe style="border:0;width:100%;" name="adframe-1" scrolling="no" srcdoc="'+iframeHtml+'" id="adframe-1"></iframe>';
 
-		if ($('#ad_img_width').text() !== '') iframeHtml = '<div style="margin:0 auto;width:'+$('#ad_img_width').text()+'px;height:'+$('#ad_img_height').text()+'px;">'+iframeHtml+'</div>';
+		if ($('#ad_img_width_input').text() !== '') iframeHtml = '<div style="margin:0 auto;width:'+$('#ad_img_width_input').text()+'px;height:'+$('#ad_img_height_input').text()+'px;">'+iframeHtml+'</div>';
     	$('#ad-image-preview').html(iframeHtml);
-    	if ($('#ad_img_width').text() !== '') $('#image-info').css('display', 'block');
 	}
 
 	function updateTextPreview(text) {
@@ -145,7 +137,6 @@ jQuery(document).ready(function($) {
 		if (textlines.length == 0) textlines = ['Ad Title','A small advertisment description. Add the text above, split the title and description with a line break (enter).'];
 		if (textlines.length == 1) textlines = [text,''];
 		$('#ad-image-preview').html('<div class="adrotator-text" style="width:300px;" id="adrotator-text"><div class="ad-text"><h2><a href="'+$('#ad_type_href').val()+'">'+textlines[0].replace(/\\/g, '')+'</a></h2><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+$('#ad_type_href').val()+'"><div class="ad-textbutton">></div></a></div>');	
-		if ($('#ad_img_width').text() !== '') $('#image-info').css('display', 'block');
 	}
 
 	var parentHref = '';
@@ -236,8 +227,7 @@ function adframeLoaded(browserWindowHeight,browserWindowWidth) {
 	window.onload = function() {
 		document.getElementById('adframe-1').style.height = browserWindowHeight+'px';
 		document.getElementById('adframe-1').style.width = browserWindowWidth+'px';
-		document.getElementById('ad_img_height').innerHTML = browserWindowHeight;
-		document.getElementById('ad_img_width').innerHTML = browserWindowWidth;
-		document.getElementById("ad_img_width_input").value = browserWindowWidth;
+		if (!document.getElementById("ad_img_width_input").value) document.getElementById("ad_img_width_input").value = browserWindowWidth;
+		if (!document.getElementById("ad_img_height_input").value) document.getElementById("ad_img_height_input").value = browserWindowHeight;
 	}
 }

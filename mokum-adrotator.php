@@ -72,7 +72,7 @@ class adverts_posttype {
 
 		if (parse_url($href)['host'] === $_SERVER['HTTP_HOST']) $slug = ltrim(parse_url($href)['path'], '/');
 
-		if ($slug === 'go/') die('<:ERROR:> Append unique slug!');
+		if ($slug === 'go/') die('<:ERROR:> Append a unique slug!');
 
 		$plink_array = prli_get_all_links();
 
@@ -89,7 +89,6 @@ class adverts_posttype {
 			$href = filter_var($_POST['parenthref'], FILTER_SANITIZE_URL);
 			if (filter_var($href, FILTER_VALIDATE_URL) == false) die('<:ERROR:> Parent URL Validation Error ('.$href.')');
 
-			// echo 'gonna name the link-'.get_home_url('','/').$slug;
 			if ( !preg_match('/[^\w.-]/', basename($slug))) {
 
 				if( $pretty_link = prli_create_pretty_link( $href, $slug, $_POST['alt']) ) {
@@ -245,13 +244,16 @@ class adverts_posttype {
 			} else {
 				echo 'Fixed Width '.get_post_meta($post_id,'_ad_type_min_width',1).'px<br>';
 			}
+			if (get_post_meta($post_id,'_ad_type_width',1)) {
+				echo 'Size: '. get_post_meta($post_id,'_ad_type_width',1) . ' x ' . get_post_meta($post_id,'_ad_type_height',1) .'px<br>';
+			}
 			echo get_post_meta($post_id,'_ad_disable_on_mobile',1)==1?'Disabled on Mobile Devices':'';
 			break;
 			case 'ar_image' :
 			if (get_post_meta($post_id,'_ad_type_select_ad_type',1) === 'Image' && get_post_meta($post_id,'_ad_type_image_url',1) ) {
 				echo '<img class="preview-img-col" src="'.get_post_meta($post_id,'_ad_type_image_url',1).'" />';
 			} else if (get_post_meta($post_id,'_ad_type_text',1) ) {
-				echo '<div style="overflow:hidden;max-width:300px;margin-top:-18px;">'. htmlspecialchars_decode( get_post_meta($post_id,'_ad_type_text',1)) . '</div>'; 
+				echo '<div style="overflow:hidden;width:300px;">'. htmlspecialchars_decode( get_post_meta($post_id,'_ad_type_text',1)) . '</div>'; 
 			}
 			break;
 
@@ -398,14 +400,13 @@ class adverts_posttype {
 			<br>
 			<input type="hidden" name="ad_disable_on_mobile" value="0" />
 			<input type="checkbox" name="ad_disable_on_mobile" id="ad_disable_on_mobile" value="1" <?php if ( 1 == $this->ad_type_get_meta( '_ad_disable_on_mobile') ) echo 'checked="checked"'; ?>>
-			<span> Disable this ad. on mobile devices</span>
-		<div id="image-info" style="display:<?php echo $this->ad_type_get_meta( '_ad_type_min_width' )?'inline-block':'none'; ?>"><strong>Natural Size (computed): </strong>
-		<span class="ad_type_min_width" id="ad_img_width"><?php echo $this->ad_type_get_meta( '_ad_type_min_width' ); ?></span>
+			<span> Disable this ad. on mobile devices</span><br>
+		<div id="image-info"><strong>Size: </strong>
+		<input type="number" max="1600" min="0" name="ad_img_width_input" class="ad_img_width_input" id="ad_img_width_input" value="<?php echo $this->ad_type_get_meta( '_ad_type_width' ); ?>">
 		<span> pixels wide, by </span>
-		<span class="ad_type_height" id="ad_img_height"></span>
+		<input type="number" max="1600" min="0" name="ad_img_height_input" class="ad_img_height_input" id="ad_img_height_input" value="<?php echo $this->ad_type_get_meta( '_ad_type_height' ); ?>">
 		<span> pixels high.</span></div>
 		</div>
-		<input type="hidden" name="ad_img_width_input" class="ad_img_width_input" id="ad_img_width_input" value="">
 		</p><?php
 	}
 
@@ -474,6 +475,10 @@ class adverts_posttype {
 			update_post_meta( $post_id, '_ad_type_select_ad_type', esc_attr( $_POST['ad_type_select_ad_type'] ) );
 		if ( isset( $_POST['ad_type_image_url'] ) )
 			update_post_meta( $post_id, '_ad_type_image_url', esc_attr( $_POST['ad_type_image_url'] ) );
+		if ( isset( $_POST['ad_img_width_input'] ) )
+			update_post_meta( $post_id, '_ad_type_width', esc_attr( $_POST['ad_img_width_input'] ) );
+		if ( isset( $_POST['ad_img_height_input'] ) )
+			update_post_meta( $post_id, '_ad_type_height', esc_attr( $_POST['ad_img_height_input'] ) );
 		if ( isset( $_POST['ad_responsive'] ) ) {
 			update_post_meta( $post_id, '_ad_responsive', esc_attr( $_POST['ad_responsive'] ) );
 			if ( $_POST['ad_responsive'] == 1) {
@@ -481,14 +486,6 @@ class adverts_posttype {
 					update_post_meta( $post_id, '_ad_type_min_width', esc_attr( $_POST['ad_type_min_width'] ) );
 				if ( isset( $_POST['ad_type_max_width'] ) )
 					update_post_meta( $post_id, '_ad_type_max_width', esc_attr( $_POST['ad_type_max_width'] ) );
-			} else {
-				if ( isset($_POST['ad_img_width_input'])) {
-					update_post_meta( $post_id, '_ad_type_min_width', esc_attr( $_POST['ad_img_width_input'] ) );
-					update_post_meta( $post_id, '_ad_type_max_width', esc_attr( $_POST['ad_img_width_input'] ) );
-				} else {
-					update_post_meta( $post_id, '_ad_type_min_width', 100 );
-					update_post_meta( $post_id, '_ad_type_max_width', 1200 );
-				}
 			}
 		}
 		if ( isset( $_POST['ad_type_href'] ) )
