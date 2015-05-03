@@ -5,7 +5,6 @@ class Mokum_AdRotator {
 		if ( is_admin() ) {
 			add_action('wp_ajax_ads_call', array($this, 'mar_ajax_ads_call'));
 			add_action('wp_ajax_nopriv_ads_call', array($this, 'mar_ajax_ads_call'));
-		    // Add other back-end action hooks here
 		} else {
 		    add_action( 'wp_enqueue_scripts', array($this,'enqueue_scripts'));
 		    add_shortcode( 'adrotator', array($this,'adrotator') );
@@ -20,8 +19,7 @@ class Mokum_AdRotator {
 		wp_register_script('mAdRotatorScript', plugins_url('/js/adrotator.js', dirname(__FILE__) ), array('jquery'),'0.0.104', true);
 		wp_enqueue_script('mAdRotatorScript');
 		$iframe_url = plugins_url( '/adframe', dirname(__FILE__ ));
-		wp_localize_script('mAdRotatorScript', 'mAdRotator', array('ajaxurl' => admin_url( 'admin-ajax.php' ), 'mar_nonce' => wp_create_nonce('mar-nonce')));
-		
+		wp_localize_script('mAdRotatorScript', 'mAdRotator', array('ajaxurl' => admin_url( 'admin-ajax.php' ), 'mar_nonce' => wp_create_nonce('mar-nonce')));	
 	}
 
 	function adrotator($atts) {

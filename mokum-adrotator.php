@@ -42,7 +42,7 @@ class adverts_posttype {
 		add_action('add_meta_boxes', array($this,'ad_type_add_href_meta_box'));
 		add_action('add_meta_boxes', array($this,'ad_type_add_preview_meta_box'));
 		add_action( 'admin_enqueue_scripts', array($this,'enqueue_scripts'));
-		add_filter ('enter_title_here', array($this,'change_enter_title_here'),10,1);
+		add_filter('enter_title_here', array($this,'change_enter_title_here'),10,1);
 		add_action( 'wp_ajax_ar_href', array($this, 'ajax_prettylink'));
 	}
 
@@ -62,7 +62,7 @@ class adverts_posttype {
 	}
 
 	function ajax_prettylink() {
-		if (!isset($_POST['mar_nonce']) || ! wp_verify_nonce($_POST['mar_nonce'], 'mar-admin-nonce' )) die('<:ERROR:> Permissions Error.');
+		if (!isset($_POST['mar_nonce']) || !wp_verify_nonce($_POST['mar_nonce'], 'mar-admin-nonce' )) die('<:ERROR:> Permissions Error.');
 
 		if( !is_plugin_active('pretty-link/pretty-link.php')) die("<:ERROR:> Problem Detecting PrettyLink");
 
@@ -109,7 +109,6 @@ class adverts_posttype {
 			}
 
 		} 
-
 		die();
 	}
 
@@ -284,8 +283,6 @@ class adverts_posttype {
 
 	    }
 	}
-
-
 
  // add filtering option
 	function wpc_add_taxonomy_filters() {
