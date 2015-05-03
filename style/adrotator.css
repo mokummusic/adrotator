@@ -73,3 +73,9 @@
   background-position: top left;
   background-size: cover;
 }
+
+.img-sizer {
+  max-width: 100%;
+  display: block;
+  overflow: hidden;
+}
