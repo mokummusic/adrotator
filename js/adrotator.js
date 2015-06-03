@@ -35,7 +35,7 @@ jQuery(document).ready(function($) {
     			var adText = $(adDom).find('.ad-text-content').text();
     			var textlines = adText.split("\n");
     	
-				$(this).html('<div class="adrotator-text" id="adrotator-text-'+i+'"><div class="ad-text"><h2><a href="'+href+'">'+textlines[0].replace(/\\/g, '')+'</a></h2><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+href+'"><div class="ad-textbutton">></div></a></div>');
+				$(this).html('<div class="adrotator-text" id="adrotator-text-'+i+'"><div class="ad-text"><h2><a rel="nofollow" href="'+href+'">'+textlines[0].replace(/\\/g, '')+'</a></h2><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+href+'"><div class="ad-textbutton">></div></a></div>');
 				resizeTextAd(this, href, adText, adImage);
     		}
 
@@ -51,9 +51,9 @@ jQuery(document).ready(function($) {
 		var textlines = alt.split("\n");
 		if ($(that).width() >= 550) {
 			if (src.length > 0) {
-				$(that).find('.adrotator-text').html('<div class="ad-text with-thumb"><h2><a href="'+href+'">'+textlines[0].replace(/\\/g, '')+'</a></h2><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+href+'"><div class="ad-textbutton ad-img-button" style="background-image:url('+src+');">></div></a>');
+				$(that).find('.adrotator-text').html('<div class="ad-text with-thumb"><h2><a rel="nofollow" href="'+href+'">'+textlines[0].replace(/\\/g, '')+'</a></h2><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+href+'"><div class="ad-textbutton ad-img-button" style="background-image:url('+src+');">></div></a>');
 			} else {
-				$(that).find('.adrotator-text').html('<div class="ad-text"><h2><a href="'+href+'">'+textlines[0].replace(/\\/g, '')+'</a></h2><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+href+'"><div class="ad-textbutton">></div></a>');
+				$(that).find('.adrotator-text').html('<div class="ad-text"><h2><a rel="nofollow" href="'+href+'">'+textlines[0].replace(/\\/g, '')+'</a></h2><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+href+'"><div class="ad-textbutton">></div></a>');
 			}
 			$(that).find('.ad-text').css('float', 'left');
 			$(that).find('.ad-text').width($(that).width()*0.75);
@@ -63,9 +63,9 @@ jQuery(document).ready(function($) {
 			$(that).find('.ad-textbutton').css('margin-top', buttonYMargin+'px');
 		} else {
 			if (src.length > 0) {
-				$(that).find('.adrotator-text').html('<div class="ad-text"><h3><a href="'+href+'">'+textlines[0].replace(/\\/g, '')+'</a></h3><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+href+'"><div class="ad-textbutton ad-img-button" style="background-image:url('+src+');">></div></a>');
+				$(that).find('.adrotator-text').html('<div class="ad-text"><h3><a rel="nofollow" href="'+href+'">'+textlines[0].replace(/\\/g, '')+'</a></h3><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+href+'"><div class="ad-textbutton ad-img-button" style="background-image:url('+src+');">></div></a>');
 			} else {
-				$(that).find('.adrotator-text').html('<div class="ad-text"><h3><a href="'+href+'">'+textlines[0].replace(/\\/g, '')+'</a></h3><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+href+'"><div class="ad-textbutton">></div></a>');
+				$(that).find('.adrotator-text').html('<div class="ad-text"><h3><a rel="nofollow" href="'+href+'">'+textlines[0].replace(/\\/g, '')+'</a></h3><p>'+textlines[1].replace(/\\/g, '')+'</p></div><a href="'+href+'"><div class="ad-textbutton">></div></a>');
 			}
 			$(that).find('.ad-text').css('text-align', 'center');
 			$(that).find('.ad-textbutton').width($(that).width() * 0.6 );
