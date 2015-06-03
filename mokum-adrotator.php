@@ -3,7 +3,7 @@
  * Plugin Name: Mokum AdRotator
  * Plugin URI: http://www.mokummusic.com
  * Description: Rotate multiple types of ads. Image, SWF, IFRAME, HTML.
- * Version: 0.1.02
+ * Version: 0.1.03
  * Author: Neil Foster
  * Author URI: http://www.mokummusic.com
  * License: GPL2
@@ -49,9 +49,9 @@ class adverts_posttype {
 	function enqueue_scripts($hook) {
 		global $post_type;
 		if (($_GET['post_type'] == 'mar_adverts') || ($post_type == 'mar_adverts')) {
-			wp_register_style('mAdRotatorAdminStyle', plugins_url('/style/adrotator-admin.css', __FILE__ ),'','0.1.0');
+			wp_register_style('mAdRotatorAdminStyle', plugins_url('/style/adrotator-admin.css', __FILE__ ),'','0.1.01');
 			wp_enqueue_style('mAdRotatorAdminStyle');
-			wp_register_script('mAdRotatorAdminScript', plugins_url('/js/adrotator-admin.js', __FILE__ ), array('jquery'),'0.1.0');
+			wp_register_script('mAdRotatorAdminScript', plugins_url('/js/adrotator-admin.js', __FILE__ ), array('jquery'),'0.1.01');
 			wp_localize_script( 'mAdRotatorAdminScript', 'marvars', 
 			array (
 				'mar_nonce' => wp_create_nonce('mar-admin-nonce')
