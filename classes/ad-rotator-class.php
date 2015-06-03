@@ -110,10 +110,10 @@ class Mokum_AdRotator {
 			$dupe_titles[] = $custom_fields['_ad_type_group'][0];
 
 			if ($custom_fields['_ad_type_select_ad_type'][0] === 'Image') {
-				$ad_html[] = '<div class="img-sizer" style="width:'.$custom_fields['_ad_type_width'][0].'px; height:'.$custom_fields['_ad_type_height'][0].'px;"><a class="ad-image" href="'.esc_url( $custom_fields['_ad_type_href'][0]).'" title="'.esc_attr( $custom_fields['_ad_type_text'][0] ).'"><img src="'. $custom_fields['_ad_type_image_url'][0] .'" alt="'.esc_attr( $custom_fields['_ad_type_text'][0] ).'" /></a></div>';
+				$ad_html[] = '<div class="img-sizer" style="width:'.$custom_fields['_ad_type_width'][0].'px; height:'.$custom_fields['_ad_type_height'][0].'px;"><a rel="nofollow" class="ad-image" href="'.esc_url( $custom_fields['_ad_type_href'][0]).'" title="'.esc_attr( $custom_fields['_ad_type_text'][0] ).'"><img src="'. $custom_fields['_ad_type_image_url'][0] .'" alt="'.esc_attr( $custom_fields['_ad_type_text'][0] ).'" /></a></div>';
 
 			} else if ($custom_fields['_ad_type_select_ad_type'][0] === 'Text') {
-				$ad_html[] = '<a class="ad-text" href="'.esc_url( $custom_fields['_ad_type_href'][0]).'" title=""><div style="width:100%;text-align:center;"><img width="100px" src="'.$custom_fields['_ad_type_image_url'][0].'" /></div><div class="ad-text-content">'.$custom_fields['_ad_type_text'][0] .'</div></a>';
+				$ad_html[] = '<a rel="nofollow" class="ad-text" href="'.esc_url( $custom_fields['_ad_type_href'][0]).'" title=""><div style="width:100%;text-align:center;"><img width="100px" src="'.$custom_fields['_ad_type_image_url'][0].'" /></div><div class="ad-text-content">'.$custom_fields['_ad_type_text'][0] .'</div></a>';
 
 			} else if ($custom_fields['_ad_type_select_ad_type'][0] === 'Script/HTML') {
 				$ad_html[] = '<div class="ad-script" style=" display: flex; margin-left: -3px; width:'.$custom_fields['_ad_type_width'][0].'px; height:'.$custom_fields['_ad_type_height'][0].'px;">' . htmlspecialchars_decode( $custom_fields['_ad_type_text'][0]) . '</div>';
