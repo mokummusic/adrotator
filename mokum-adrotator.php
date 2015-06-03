@@ -3,7 +3,7 @@
  * Plugin Name: Mokum AdRotator
  * Plugin URI: http://www.mokummusic.com
  * Description: Rotate multiple types of ads. Image, SWF, IFRAME, HTML.
- * Version: 0.1.01
+ * Version: 0.1.02
  * Author: Neil Foster
  * Author URI: http://www.mokummusic.com
  * License: GPL2
